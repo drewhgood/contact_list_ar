@@ -1,13 +1,15 @@
 require 'pg'
+require 'pry'
 
 class Contact
 
-  attr_accessor :firstname, :lastname, :email
+  attr_accessor :firstname, :lastname, :email, :id
 
   def initialize(firstname, lastname, email)
     @firstname = firstname
     @lastname = lastname
     @email = email
+    @id = nil
   end
 
 
@@ -23,8 +25,16 @@ class Contact
   end
 
   def save
+    self.id ? update : create
+  end
+
+  def create
     self.class.connection.exec_params("INSERT INTO contacts (firstname, lastname, email)
-      VALUES ($1,$2,$3)",[@firstname, @lastname, @email])
+    VALUES ($1,$2,$3)",[@firstname, @lastname, @email])
+  end
+
+  def update
+    puts 'update'
   end
 
   def self.test
@@ -37,6 +47,7 @@ class Contact
 
 end
 
-# p c = Contact.new('Tom','Jones','tom@gmail.com')
-# c.save
+p c = Contact.new('Bob','Marley','Marley@gmail.com')
+c.save
 print Contact.test
+
