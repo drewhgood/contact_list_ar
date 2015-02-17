@@ -22,18 +22,21 @@ class Contact
     )
   end
 
-  # def self.test
-  #   connection.exec("SELECT * FROM contacts;") do |contacts|
-  #     contacts.each do |contact|
-  #       p contact
-  #     end
-  #   end
-  # end
+  def save
+    self.class.connection.exec_params("INSERT INTO contacts (firstname, lastname, email)
+      VALUES ($1,$2,$3)",[@firstname, @lastname, @email])
+  end
+
+  def self.test
+    connection.exec("SELECT * FROM contacts;") do |contacts|
+      contacts.each do |contact|
+        p contact
+      end
+    end
+  end
 
 end
 
-p Contact.new('Tom','Jones','tom@gmail.com')
-
-
-
-#p Contact.test
+# p c = Contact.new('Tom','Jones','tom@gmail.com')
+# c.save
+print Contact.test
