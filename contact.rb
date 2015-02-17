@@ -2,8 +2,14 @@ require 'pg'
 
 class Contact
 
-  def initialize
+  attr_accessor :firstname, :lastname, :email
+
+  def initialize(firstname, lastname, email)
+    @firstname = firstname
+    @lastname = lastname
+    @email = email
   end
+
 
   def self.connection
     return @conn if @conn
@@ -26,8 +32,8 @@ class Contact
 
 end
 
+p Contact.new('Tom','Jones','tom@gmail.com')
 
 
 
-
-p Contact.test
+#p Contact.test
