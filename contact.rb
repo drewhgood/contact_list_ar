@@ -25,15 +25,47 @@ class Contact
   end
 
 
-  def self.find(id)
-    connection.exec_params("SELECT * FROM contacts Where id = $1;", [id] ) do |contacts|
+  # def display(contact)
+  #   name = contact['firstname']
+  #   p name
+  # end
+
+
+
+  # def self.find(id)
+  #   connection.exec_params("SELECT * FROM contacts Where id = $1;", [id] ) do |contacts|
+      
+  #     contacts.each do |contact|
+  #       # p contact['firstname']
+  #       display(contact)
+  #     end
+
+  #   end
+  # end
+
+
+  def self.find_all_by_lastname(lastname)
+    connection.exec_params("SELECT * FROM contacts Where lastname = $1;", [lastname] ) do |contacts|
       
       contacts.each do |contact|
         p contact
+     
       end
 
     end
   end
+
+  def self.find_all_by_firstname(firstname)
+    connection.exec_params("SELECT * FROM contacts Where firstname = $1;", [firstname] ) do |contacts|
+      
+      contacts.each do |contact|
+        p contact
+     
+      end
+
+    end
+  end
+
 
 
   def save
@@ -87,9 +119,9 @@ class Contact
 
 end
 
-p c = Contact.new('Jssssss','Pannn','joese@hossssssail.com')
-c.save
+# p c = Contact.new('Jssssss','Pannn','joese@hossssssail.com')
+# c.save
 # print Contact.test
 
-Contact.find(22)
+Contact.find_all_by_firstname('Andrew')
 
