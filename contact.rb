@@ -30,6 +30,11 @@ class Contact
   end
 
 
+  def delete
+    self.class.connection.exec_params("DELETE FROM contacts WHERE id = $1",[self.id]) 
+  end
+
+
   def create_contact
       
       matching_records = self.class.connection.exec_params("SELECT * FROM contacts WHERE email = $1;",[@email])
@@ -71,7 +76,10 @@ class Contact
 
 end
 
-p c = Contact.new('Jose','Pannn','joese@hotmail.com')
+p c = Contact.new('Jssssss','Pannn','joese@hossssssail.com')
 c.save
 # print Contact.test
+
+c.delete
+
 
