@@ -25,19 +25,30 @@ class Contact
   end
 
 
+  def self.find(id)
+    connection.exec_params("SELECT * FROM contacts Where id = $1;", [id] ) do |contacts|
+      
+      contacts.each do |contact|
+        p contact
+      end
+
+    end
+  end
+
+
   def save
     self.id ? update : create_contact  
   end
 
 
   def delete
-    self.class.connection.exec_params("DELETE FROM contacts WHERE id = $1",[self.id]) 
+    self.class.connection.exec_params("DELETE FROM contacts WHERE id = $1", [self.id] ) 
   end
 
 
   def create_contact
       
-      matching_records = self.class.connection.exec_params("SELECT * FROM contacts WHERE email = $1;",[@email])
+      matching_records = self.class.connection.exec_params("SELECT * FROM contacts WHERE email = $1;", [@email] )
       
       if matching_records.ntuples!= 0
       puts "Email address already exists."
@@ -80,6 +91,5 @@ p c = Contact.new('Jssssss','Pannn','joese@hossssssail.com')
 c.save
 # print Contact.test
 
-c.delete
-
+Contact.find(22)
 
