@@ -55,8 +55,21 @@ class Contact
     end
   end
 
+
   def self.find_all_by_firstname(firstname)
     connection.exec_params("SELECT * FROM contacts Where firstname = $1;", [firstname] ) do |contacts|
+      
+      contacts.each do |contact|
+        p contact
+     
+      end
+
+    end
+  end
+
+
+  def self.find_all_by_email(email)
+    connection.exec_params("SELECT * FROM contacts Where email = $1;", [email] ) do |contacts|
       
       contacts.each do |contact|
         p contact
@@ -123,5 +136,5 @@ end
 # c.save
 # print Contact.test
 
-Contact.find_all_by_firstname('Andrew')
+Contact.find_all_by_email('drewhgood@gmail.com')
 
