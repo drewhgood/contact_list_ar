@@ -3,7 +3,7 @@ require_relative 'contact'
 class Application
 
   def self.add_contact(firstname, lastname, email)
-    Contact.create(firstname: firstname, lastname: lastname, email: email)
+    contact = Contact.create(firstname: firstname, lastname: lastname, email: email)
     puts "#{contact.firstname} #{contact.lastname} has been added."
   end
 
@@ -27,13 +27,21 @@ class Application
    puts "#{contact.firstname} #{contact.lastname}  -  Email:#{contact.email}"
   end
 
+  def self.all
+    contacts = Contact.all
+    contacts.each do|contact|
+      puts "#{contact.firstname} #{contact.lastname}  -  Email:#{contact.email}"
+    end
+  end
+
 
 end
 
 
 
- Application.find_by_email('drewhgood@gmail.com')
-# Application.add_contact('andrew','good','drewhgood@gmail.com')
+ # Application.find_by_email('drewhgood@gmail.com')
+# Application.add_contact('lola','good','drewhgood@gmail.com')
+# Application.all
 
-# Application.destroy_contact(4)
+# Application.destroy_contact(6)
 
