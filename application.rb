@@ -34,14 +34,34 @@ class Application
     end
   end
 
+  def self.update(id, field, value) #takes three parameters, the contact you want to update, the column you want to update an the value you want to update with.
+    contact = Contact.find(id)
+    
+    case field
+      when 'firstname'
+        contact.firstname = value
+        p "First name is now #{value}."
+      when 'lastname'
+        contact.lastname = value
+        p "Last name is now #{value}."
+      when 'email'
+        contact.email = value
+        p "Email is now #{value}."
+      else
+        return
+    end
+
+    contact.save
+  end
+
 
 end
 
 
-
+Application.update(5,'email','drew@goodfinancial.ca')
  # Application.find_by_email('drewhgood@gmail.com')
-# Application.add_contact('lola','good','drewhgood@gmail.com')
+# Application.add_contact('lola','good','drewhgood@gmail.com')x
 # Application.all
 
-# Application.destroy_contact(6)
+# Application.destroy_contact(3)
 
