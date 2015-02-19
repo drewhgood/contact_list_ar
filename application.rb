@@ -58,7 +58,7 @@ class Application
 end
 
 
-Application.update(5,'email','drew@goodfinancial.ca')
+# Application.update(5,'email','drew@goodfinancial.ca')
  # Application.find_by_email('drewhgood@gmail.com')
 # Application.add_contact('lola','good','drewhgood@gmail.com')x
 # Application.all
