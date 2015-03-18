@@ -57,9 +57,4 @@ class Application
     contact.save
   end
 
-
 end
-
-Application.find_by_firstname('Meganf')
-
-
